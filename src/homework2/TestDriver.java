@@ -15,7 +15,7 @@ public class TestDriver {
 
 	// String -> Graph: maps the names of graphs to the actual graph
 	// TODO: Parameterize the next line correctly.
-  	private final Map<String,          > graphs = new HashMap<>();
+  	private final Map<String, String /* TODO remove this */> graphs = new HashMap<>();
   	// String -> WeightedNode: maps the names of nodes to the actual node
   	private final Map<String,WeightedNode> nodes = new HashMap<>();
 	private final BufferedReader input;
