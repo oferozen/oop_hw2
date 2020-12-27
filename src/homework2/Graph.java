@@ -1,9 +1,10 @@
 package homework2;
 
-import java.util.ArrayList;
 import java.util.HashMap;
+import java.util.HashSet;
 import java.util.Iterator;
-import java.util.List;
+import java.util.PriorityQueue;
+import java.util.Queue;
 
 /**
  * A Graph models a set of nodes where between each pair of nodes there could be 1-way
@@ -12,9 +13,9 @@ import java.util.List;
  *      nodes : Set of nodes 
  **/
 
-public abstract class Graph<E, P extends Path<E,P>> {
+public class Graph<E extends WeightedNode> {
 
-    HashMap<E, List<E>> m_nodes = new HashMap<>();
+    HashMap<E, HashSet<E>> nodes = new HashMap<>();
     
     /**
      * Add a node to the graph. If node already exists in the array, do nothing. 
@@ -26,11 +27,31 @@ public abstract class Graph<E, P extends Path<E,P>> {
         
         assert(node != null);
         
-        if (m_nodes.containsKey(node)) {
+        if (nodes.containsKey(node)) {
             return;
         }
         
-        m_nodes.put(node, new ArrayList<>());
+        nodes.put(node, new HashSet<E>());
+    }
+    
+    /**
+     * Add an edge between 2 nodes in the graph.
+     * @requires source != NULL  &&
+     * @         source in graph &&
+     * @         dest != NULL     &&
+     * @         dest in graph
+     * @modifies 
+     * @effects if graph contains both nodes, and there is not an edge between them, add an edge
+     * @        between them.
+     */
+    public void addEdge(E source, E dest) {
+    	assert(source != null);
+    	assert(dest != null);
+    	assert(nodes.containsKey(source));
+    	assert(nodes.containsKey(dest));
+    	assert(! nodes.get(source).contains(dest));
+    	
+    	nodes.get(source).add(dest);
     }
 
     /**
@@ -40,7 +61,7 @@ public abstract class Graph<E, P extends Path<E,P>> {
      * @effects Returns an immutable list of all nodes in the graph.
      */
     public Iterator<E> getNodes(){
-        return m_nodes.keySet().iterator();
+        return nodes.keySet().iterator();
     }
     
     /**
@@ -49,11 +70,11 @@ public abstract class Graph<E, P extends Path<E,P>> {
      * @requires node in graph
      * @modifies    
      * @effects Returns an iterator to the children of node.
-     */    
+     */
     public Iterator<E> getNodeChildren(E node){
         assert(node != null);
-        assert(m_nodes.containsKey(node));
-        return m_nodes.get(node).iterator();
+        assert(nodes.containsKey(node));
+        return nodes.get(node).iterator();
     }
     
 
@@ -68,11 +89,14 @@ public abstract class Graph<E, P extends Path<E,P>> {
      * @effects Returns an path instance which describe the shortest path from source 
      *          to dest.
      */    
-    public Iterator<E> findPath(E source, E dest){
-
+    /*
+    public P findPath(E source, E dest){
+    	assert(false);
     	
-    	// TODO
-    	
+    	Queue<E> visiting = new PriorityQueue();
+    	HashSet<E> NotVisited = new HashSet(nodes.keySet());
+    	HashSet<E> finished = new HashSet();
     	return null;
     }
+    */
 }
