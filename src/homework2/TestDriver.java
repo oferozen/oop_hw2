@@ -15,7 +15,7 @@ public class TestDriver {
 
 	// String -> Graph: maps the names of graphs to the actual graph
 	// TODO: Parameterize the next line correctly.
-  	private final Map<String, String /* TODO remove this */> graphs = new HashMap<>();
+  	private final Map<String,Graph<WeightedNode>> graphs = new HashMap<>();
   	// String -> WeightedNode: maps the names of nodes to the actual node
   	private final Map<String,WeightedNode> nodes = new HashMap<>();
 	private final BufferedReader input;
@@ -108,12 +108,10 @@ public class TestDriver {
 
 
   	private void createGraph(String graphName) {
-  		
-  		//TODO: Insert your code here.
-  		
-  		// graphs.put(graphName, ___);
-  		// output.println(...);
-
+  		if(this.graphs.containsKey(graphName)) {
+  			return;
+  		}
+  		this.graphs.put(graphName, new Graph<WeightedNode>());
   	}
  
   	
@@ -130,12 +128,15 @@ public class TestDriver {
 
 
  	private void createNode(String nodeName, String cost) {
-
- 		// TODO: Insert your code here.
- 		
- 		// nodes.put(nodeName, ___);
- 		// output.println(...);
- 		
+ 		if(this.nodes.containsKey(nodeName)) {
+  			return;
+  		}
+ 		if(Integer.parseInt(cost) < 0) {
+ 			output.println("Bad Parameter: ente non-negative costs only!");
+ 			return;
+ 		}
+  		this.nodes.put(nodeName, new WeightedNode(nodeName,Integer.parseInt(cost)));
+ 		output.println("created node " + nodeName + " with cost " + cost); 		
   	}
 	
 
@@ -152,13 +153,22 @@ public class TestDriver {
 
 
   	private void addNode(String graphName, String nodeName) {
-
-  		// TODO: Insert your code here.
-  		 
-  		// ___ = graphs.get(graphName);
-  		// ___ = nodes.get(nodeName);
-  		// output.println(...);
   		
+  		Graph<WeightedNode> graph = graphs.get(graphName);
+  		if(graph == null) {
+  			output.println("unidentified graph: " + graphName);
+  			return;
+  		}
+  		WeightedNode nodeToAdd = nodes.get(nodeName);
+  		if(nodeToAdd == null) {
+  			output.println("unidentified node: " + nodeName);
+  			return;
+  		}
+  		boolean result = graph.addNode(nodeToAdd);
+  		if (!result) {
+  			output.println("node " + nodeName + " exists in graph " + graphName); 	
+  		}
+  		output.println("added node " + nodeName + " to " + graphName);
   	}
 
 
@@ -177,12 +187,30 @@ public class TestDriver {
 
 	private void addEdge(String graphName, String parentName, String childName) {
 		
-		// TODO: Insert your code here.
-		  
-		// ___ = graphs.get(graphName);
-		// ___ = nodes.get(parentName);
-		// ___ = nodes.get(childName);
-		// output.println(...);
+		Graph<WeightedNode> graph = graphs.get(graphName);
+  		if(graph == null) {
+  			output.println("unidentified graph: " + graphName);
+  			return;
+  		}
+  		WeightedNode sourceNode = nodes.get(parentName);
+  		if(sourceNode == null) {
+  			output.println("unidentified node: " + parentName);
+  			return;
+  		}
+  		WeightedNode destinationNode = nodes.get(childName);
+  		if(destinationNode == null) {
+  			output.println("unidentified node: " + childName);
+  			return;
+  		}
+  		if (!graph.conatins(sourceNode) || !(graph.conatins(destinationNode))) {
+  			output.println("nodes must be in graph");
+  			return;
+  		}
+  		boolean result = graph.addEdge(sourceNode,destinationNode);
+  		if (!result) {
+  			output.println("edge already exists"); 	
+  		}
+  		output.println("added edge from " + parentName + " to " +  childName + " in " +  graphName);
 
   	}
 
