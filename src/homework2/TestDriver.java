@@ -228,10 +228,17 @@ public class TestDriver {
 
   	private void listNodes(String graphName) {
   		
-  		// TODO: Insert your code here.
-  		   
-  		// ___ = graphs.get(graphName);
-  		// output.println(...);
+  		Graph<WeightedNode> graph = graphs.get(graphName);
+  		if(graph == null) {
+  			output.println("unidentified graph: " + graphName);
+  			return;
+  		}
+  		output.println(graphName + "contains");
+  		
+  		/*
+  		 * 	 	TODO: run the iterator and print  (immutable? rep exposure ?)
+  		 */
+  
 
   	}
 
@@ -249,12 +256,23 @@ public class TestDriver {
 
 
   	private void listChildren(String graphName, String parentName) {
-
-  		// TODO: Insert your code here.
-  		    
-  		// ___ = graphs.get(graphName);
-  		// ___ = nodes.get(parentName);
-  		// output.println(...);
+  		
+  		Graph<WeightedNode> graph = graphs.get(graphName);
+  		if(graph == null) {
+  			output.println("unidentified graph: " + graphName);
+  			return;
+  		}
+  		WeightedNode parentNode = nodes.get(parentName);
+  		if(parentNode == null) {
+  			output.println("unidentified node: " + parentName);
+  			return;
+  		}
+  		output.println("the children of " + parentNode + " in " + graphName + " are:");
+  		
+  		/*
+  		 *      TODO:  run the iterator and print  (immutable? rep exposure ?)
+  		 */
+  
   		
   	}
 
