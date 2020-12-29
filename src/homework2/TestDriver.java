@@ -112,6 +112,8 @@ public class TestDriver {
   			return;
   		}
   		this.graphs.put(graphName, new Graph<WeightedNode>());
+  		
+  		output.println("created graph " + graphName);
   	}
  
   	
@@ -202,7 +204,7 @@ public class TestDriver {
   			output.println("unidentified node: " + childName);
   			return;
   		}
-  		if (!graph.conatins(sourceNode) || !(graph.conatins(destinationNode))) {
+  		if (!graph.contains(sourceNode) || !(graph.contains(destinationNode))) {
   			output.println("nodes must be in graph");
   			return;
   		}
@@ -213,8 +215,7 @@ public class TestDriver {
   		output.println("added edge from " + parentName + " to " +  childName + " in " +  graphName);
 
   	}
-
-
+	
   	private void listNodes(List<String> arguments) {
 
     	if (arguments.size() != 1)
@@ -225,21 +226,33 @@ public class TestDriver {
     	listNodes(graphName);
   	}
 
-
   	private void listNodes(String graphName) {
+  		
+  		String result = "";
   		
   		Graph<WeightedNode> graph = graphs.get(graphName);
   		if(graph == null) {
   			output.println("unidentified graph: " + graphName);
   			return;
   		}
-  		output.println(graphName + "contains");
   		
-  		/*
-  		 * 	 	TODO: run the iterator and print  (immutable? rep exposure ?)
-  		 */
-  
+  		result += (graphName + " contains:");
 
+  		List<String> nodesToPrint = new ArrayList<String>();
+  		Iterator<WeightedNode> it = graph.getNodes(); 
+  		
+  		if (it.hasNext()) {
+  			result += " ";
+  		}
+  		
+  		while(it.hasNext()) {
+  			nodesToPrint.add(it.next().getName());
+  		}
+  		  		
+  		Collections.sort(nodesToPrint);
+  		result += String.join(" ", nodesToPrint);
+  		
+  		output.println(result);
   	}
 
 
@@ -267,13 +280,24 @@ public class TestDriver {
   			output.println("unidentified node: " + parentName);
   			return;
   		}
-  		output.println("the children of " + parentNode + " in " + graphName + " are:");
   		
-  		/*
-  		 *      TODO:  run the iterator and print  (immutable? rep exposure ?)
-  		 */
-  
+  		String result = String.format("the children of %s in %s are:", parentName, graphName);
   		
+  		List<String> nodesToPrint = new ArrayList<String>();
+  		Iterator<WeightedNode> it = graph.getNodeChildren(parentNode);
+  		
+  		if (it.hasNext()) {
+  			result += " ";
+  		}
+  		
+  		while(it.hasNext()) {
+  			nodesToPrint.add(it.next().getName());
+  		}
+  		  		
+  		Collections.sort(nodesToPrint);
+  		result += String.join(" ", nodesToPrint);
+  		
+  		output.println(result);
   	}
 
 
