@@ -347,7 +347,69 @@ public class TestDriver {
   		// ___ = nodes.get(sourceArgs.get(i));
   		// ___ = nodes.get(destArgs.get(i));
   		// output.println(...);
-		
+  		
+  		Graph<WeightedNode> graph = graphs.get(graphName);
+  		if(graph == null) {
+  			output.println("unidentified graph: " + graphName);
+  			assert(false);
+  			return;
+  		}
+  		
+  		
+  		Set<WeightedNodePath> sources = new HashSet<WeightedNodePath>();
+  		
+  		for (String sourceName : sourceArgs) {
+  			  			
+  	  		if (Collections.frequency(sourceArgs, sourceName) > 1) {
+  	  			output.println("duplicated source node:" + sourceName);
+  	  			assert(false);
+  	  			return;  	  			
+  	  		}
+
+  	  		WeightedNode node = nodes.get(sourceName);
+  			
+  			if(node == null) {
+  	  			output.println("unidentified source node: " + sourceName);
+  	  			assert(false);
+  	  			return;
+  	  		}
+  			
+  			sources.add(new WeightedNodePath(node));  			
+  		}
+  		
+  		Set<WeightedNodePath> destinations = new HashSet<WeightedNodePath>();
+  		
+  		for (String destName : destArgs) {
+	  			
+  	  		if (Collections.frequency(destArgs, destName) > 1) {
+  	  			output.println("duplicated destination node:" + destName);
+  	  			assert(false);
+  	  			return;  	  			
+  	  		}
+
+  	  		WeightedNode node = nodes.get(destName);
+  			
+  			if(node == null) {
+  	  			output.println("unidentified destination node: " + destName);
+  	  			assert(false);
+  	  			return;
+  	  		}
+  			
+  			destinations.add(new WeightedNodePath(node));
+  		}
+  		
+  		String message = String.format("shortest path in %s:", graphName);
+  		
+  		var pathFinder = new PathFinder<WeightedNode, WeightedNodePath>(graph);
+  		Iterator<WeightedNode> it = pathFinder.FindShortestPath(sources, destinations).iterator();
+
+  		if (it != null) {
+	  		while (it.hasNext()) {
+	  			message += " " + it.next().getName();
+	  		}
+  		}
+	  		
+  		output.println(message);
   	}
 
 

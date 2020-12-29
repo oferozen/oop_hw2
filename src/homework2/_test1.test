@@ -18,3 +18,5 @@ ListChildren graph1 n1
 ListChildren graph1 n2
 
 # Find a path
+FindPath graph1 n1 -> n2
+

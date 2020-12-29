@@ -8,3 +8,4 @@ added node n2 to A
 added node n3 to A
 added edge from n3 to n1 in A
 added edge from n3 to n2 in A
+shortest path in A: n3 n2

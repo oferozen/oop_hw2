@@ -18,3 +18,4 @@ ListNodes A
 ListChildren A n1
 AddEdge A n3 n3
 ListChildren A n3
+FindPath A n3 -> n2

@@ -8,3 +8,4 @@ AddNode A n2
 AddNode A n3
 AddEdge A n3 n1 
 AddEdge A n3 n2
+FindPath A n3 -> n2 n1

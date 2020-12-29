@@ -18,3 +18,4 @@ A contains: n1 n2 n3
 the children of n1 in A are: n2 n3
 added edge from n3 to n3 in A
 the children of n3 in A are: n1 n3
+shortest path in A: n3 n1 n2
