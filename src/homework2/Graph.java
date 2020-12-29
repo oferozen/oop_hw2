@@ -100,7 +100,7 @@ public class Graph<E> {
     
     /**
      * Add a node to the graph. If node already exists in the graph, do nothing. 
-     * @requires node != NULL && node not in vertices TODO hide in all other methods also
+     * @requires node != NULL && node not in vertices
      * @modifies
      * @effects if this graph doesn't contain the node it will be added as a vertex to the graph.
      * @return true if the node was added to the graph and no error occurd.
@@ -110,8 +110,8 @@ public class Graph<E> {
         checkRep();
         
         boolean valid = true;
-        valid &= validateNodeNullity(node, "addNode", "node");
-        valid &= validateNodeExists(node, false, "addNode", "node");
+        if (!validateNodeNullity(node, "addNode", "node")) valid = false;
+        if (!validateNodeExists(node, false, "addNode", "node")) valid = false; ;
         
         if (valid) {
         	nodes.put(node, new HashSet<E>());
@@ -125,9 +125,9 @@ public class Graph<E> {
     /**
      * Add an edge between 2 nodes in the graph.
      * @requires source != NULL &&
-     *           nodes.containsKey(source) &&
+     *           source in vertices
      *           dest != NULL &&
-     *           nodes.containsKey(dest)
+     *           dest in vertices
      * @modifies
      * @effects if graph contains both nodes, and there is not an edge between them, add an edge
      * @        between them.
@@ -139,10 +139,10 @@ public class Graph<E> {
         
         boolean valid = true;
         
-        valid &= validateNodeNullity(source, "addEdge", "source");      
-        valid &= validateNodeNullity(dest, "addEdge", "dest");         
-        valid &= validateNodeExists(source, true, "addEdge", "source");
-        valid &= validateNodeExists(dest, true, "addEdge", "dest");    
+        if (!validateNodeNullity(source, "addEdge", "source")) valid = false;      
+        if (!validateNodeNullity(dest, "addEdge", "dest")) valid = false;        
+        if (!validateNodeExists(source, true, "addEdge", "source")) valid = false;
+        if (!validateNodeExists(dest, true, "addEdge", "dest")) valid = false;
         
         if (nodes.get(source).contains(dest)) {
         	valid = false;
@@ -169,7 +169,7 @@ public class Graph<E> {
         boolean exists = false;
         boolean valid = true;
         
-        valid = validateNodeNullity(node, "contains", "node");
+        if (!validateNodeNullity(node, "contains", "node")) valid = false;
         
         if (valid) {
         	exists = nodes.containsKey(node);
@@ -199,7 +199,7 @@ public class Graph<E> {
     
     /**
      * Returns an immutable list of the children of a node in the graph.
-     * @requires node != NULL && nodes.containsKey(node)
+     * @requires node != NULL && node in vertices
      * @modifies    
      * @effects Returns an iterator to the children of the given node.
      */
@@ -208,8 +208,8 @@ public class Graph<E> {
         checkRep();
         
         boolean valid = true;
-        valid &= validateNodeNullity(node, "getNodeChildren", "node");
-        valid &= validateNodeExists(node, true, "getNodeChildren", "node");
+        if (!validateNodeNullity(node, "getNodeChildren", "node")) valid = false;
+        if (!validateNodeExists(node, true, "getNodeChildren", "node")) valid = false;
         
         Iterator<E> result = valid ? nodes.get(node).iterator() : null;
         
@@ -218,27 +218,4 @@ public class Graph<E> {
         return result;
 
     }
-    
-
-    /**
-     * Calculate shortest path from source to dest. If path doesn't exists, return
-     * an empty list
-     * @requires source != NULL  &&
-     * @         source in graph &&
-     * @         dest != NULL     &&
-     * @         dest in graph
-     * @modifies
-     * @effects Returns an path instance which describe the shortest path from source 
-     *          to dest.
-     */    
-    /*
-    public P findPath(E source, E dest){
-        assert(false);
-        
-        Queue<E> visiting = new PriorityQueue();
-        HashSet<E> NotVisited = new HashSet(nodes.keySet());
-        HashSet<E> finished = new HashSet();
-        return null;
-    }
-    */
 }
