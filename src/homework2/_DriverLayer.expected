@@ -1,0 +1,34 @@
+#testing the TestDriver parser class
+
+# Create a graph
+created graph graph1
+
+# creating nodes n1 n2
+created node n1 with cost 1
+created node n2 with cost 2
+created node n5 with cost 5
+
+# try adding node to non existing graph then non existing node to graph1
+unidentified graph: graph2
+unidentified node: n3
+
+# Graph status
+graph1 contains:
+
+#Add a pair of nodes to graph1
+added node n1 to graph1
+added node n2 to graph1
+
+# try adding an edge to non-existing graph
+unidentified graph: graph2
+
+# try adding an edge between non existing node/nodes
+unidentified node: n3
+
+# try adding an edge between nodes not contained in graph
+nodes must be in graph
+
+# Graph status
+graph1 contains: n1 n2
+the children of n1 in graph1 are:
+the children of n2 in graph1 are:

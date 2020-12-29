@@ -1,0 +1,51 @@
+#build a source with double edges to all other nodes
+
+# Create a graph
+CreateGraph graph1
+
+# Add source node and four other nodes to graph1
+CreateNode ns 30
+CreateNode n1 1
+CreateNode n2 2
+CreateNode n3 3
+CreateNode n4 4
+AddNode graph1 ns
+AddNode graph1 n1
+AddNode graph1 n2
+AddNode graph1 n3
+AddNode graph1 n4
+
+# Add the directed edge (ns,ns)
+AddEdge graph1 ns ns
+
+# Add the directed edge (ns,n1)
+AddEdge graph1 ns n1
+
+# Add the directed edge (ns,n2)
+AddEdge graph1 ns n2
+
+# Add the directed edge (ns,n3)
+AddEdge graph1 ns n3
+
+# Add the directed edge (ns,n4)
+AddEdge graph1 ns n4
+
+# Add the directed edge (n1,ns)
+AddEdge graph1 n1 ns
+
+# Add the directed edge (n2,ns)
+AddEdge graph1 n2 ns
+
+# Add the directed edge (n3,ns)
+AddEdge graph1 n3 ns
+
+# Add the directed edge (n4,ns)
+AddEdge graph1 n4 ns
+
+# Graph status
+ListNodes graph1
+ListChildren graph1 ns
+ListChildren graph1 n1
+ListChildren graph1 n2
+ListChildren graph1 n3
+ListChildren graph1 n4

@@ -1,0 +1,34 @@
+#testing the TestDriver parser class
+
+# Create a graph
+CreateGraph graph1
+
+# creating nodes n1 n2
+CreateNode n1 1
+CreateNode n2 2
+CreateNode n5 5
+
+# try adding node to non existing graph then non existing node to graph1
+AddNode graph2 n1
+AddNode graph1 n3
+
+# Graph status
+ListNodes graph1
+
+#Add a pair of nodes to graph1
+AddNode graph1 n1
+AddNode graph1 n2
+
+# try adding an edge to non-existing graph
+AddEdge graph2 n1 n2
+
+# try adding an edge between non existing node/nodes
+AddEdge graph1 n3 n2
+
+# try adding an edge between nodes not contained in graph
+AddEdge graph1 n5 n2
+
+# Graph status
+ListNodes graph1
+ListChildren graph1 n1
+ListChildren graph1 n2
