@@ -211,6 +211,7 @@ public class TestDriver {
   		boolean result = graph.addEdge(sourceNode,destinationNode);
   		if (!result) {
   			output.println("edge already exists"); 	
+  			return;
   		}
   		output.println("added edge from " + parentName + " to " +  childName + " in " +  graphName);
 

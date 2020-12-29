@@ -103,7 +103,7 @@ public class Graph<E> {
      * @requires node != NULL && node not in vertices
      * @modifies
      * @effects if this graph doesn't contain the node it will be added as a vertex to the graph.
-     * @return true if the node was added to the graph and no error occurd.
+     * @return true if the node was added to the graph and no error occured.
      */
     public boolean addNode(E node) {
         
@@ -146,7 +146,7 @@ public class Graph<E> {
         
         if (nodes.get(source).contains(dest)) {
         	valid = false;
-        	System.out.println("ERROR: Graph: addEdge: edge already exists"); 	
+        //	System.out.println("ERROR: Graph: addEdge: edge already exists"); NO NEED FOR MESSAGE HERE ?! 	
         }
         
         if (valid) {
