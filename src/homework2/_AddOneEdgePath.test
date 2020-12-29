@@ -1,0 +1,27 @@
+# Add an additional path that's comprised of one edge
+
+# Create a graph
+CreateGraph graph1
+
+# Add three nodes to graph1
+CreateNode n1 1
+CreateNode n2 2
+CreateNode n3 3
+AddNode graph1 n1
+AddNode graph1 n2
+AddNode graph1 n3
+
+# Add the directed edge (n1,n2)
+AddEdge graph1 n1 n2
+
+# Add the directed edge (n2,n3)
+AddEdge graph1 n2 n3
+
+# Add the directed edge (n1,n3)
+AddEdge graph1 n1 n3
+
+# Graph status
+ListNodes graph1
+ListChildren graph1 n1
+ListChildren graph1 n2
+ListChildren graph1 n3

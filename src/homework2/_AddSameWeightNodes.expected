@@ -1,0 +1,15 @@
+# Add two nodes with the same weight
+
+# Create a graph
+created graph graph1
+
+# Add a pair of nodes to graph1
+created node n1 with cost 10
+created node n2 with cost 10
+added node n1 to graph1
+added node n2 to graph1
+
+# Graph status
+graph1 contains: n1 n2
+the children of n1 in graph1 are:
+the children of n2 in graph1 are:

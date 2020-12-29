@@ -1,0 +1,15 @@
+# Add a self-loop
+
+# Create a graph
+created graph graph1
+
+# Add a node to graph1
+created node n1 with cost 10
+added node n1 to graph1
+
+# Add self-loop to n1
+added edge from n1 to n1 in graph1
+
+# Graph status
+graph1 contains: n1
+the children of n1 in graph1 are: n1

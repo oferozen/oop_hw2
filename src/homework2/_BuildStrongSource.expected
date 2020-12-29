@@ -1,0 +1,51 @@
+#build a source with double edges to all other nodes
+
+# Create a graph
+created graph graph1
+
+# Add source node and four other nodes to graph1
+created node ns with cost 30
+created node n1 with cost 1
+created node n2 with cost 2
+created node n3 with cost 3
+created node n4 with cost 4
+added node ns to graph1
+added node n1 to graph1
+added node n2 to graph1
+added node n3 to graph1
+added node n4 to graph1
+
+# Add the directed edge (ns,ns)
+added edge from ns to ns in graph1
+
+# Add the directed edge (ns,n1)
+added edge from ns to n1 in graph1
+
+# Add the directed edge (ns,n2)
+added edge from ns to n2 in graph1
+
+# Add the directed edge (ns,n3)
+added edge from ns to n3 in graph1
+
+# Add the directed edge (ns,n4)
+added edge from ns to n4 in graph1
+
+# Add the directed edge (n1,ns)
+added edge from n1 to ns in graph1
+
+# Add the directed edge (n2,ns)
+added edge from n2 to ns in graph1
+
+# Add the directed edge (n3,ns)
+added edge from n3 to ns in graph1
+
+# Add the directed edge (n4,ns)
+added edge from n4 to ns in graph1
+
+# Graph status
+graph1 contains: n1 n2 n3 n4 ns
+the children of ns in graph1 are: n1 n2 n3 n4 ns
+the children of n1 in graph1 are: ns
+the children of n2 in graph1 are: ns
+the children of n3 in graph1 are: ns
+the children of n4 in graph1 are: ns

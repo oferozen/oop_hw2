@@ -1,0 +1,15 @@
+# Add a self-loop
+
+# Create a graph
+CreateGraph graph1
+
+# Add a node to graph1
+CreateNode n1 10
+AddNode graph1 n1
+
+# Add self-loop to n1
+AddEdge graph1 n1 n1
+
+# Graph status
+ListNodes graph1
+ListChildren graph1 n1

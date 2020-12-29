@@ -1,5 +1,6 @@
 package homework2;
-
+import static org.junit.Assert.*;
+import org.junit.Test;
 
 /**
  * This class contains a set of test cases that can be used to test the graph
@@ -11,12 +12,11 @@ public class GraphTests extends ScriptFileTests {
 	// black-box test are inherited from super
 	public GraphTests(java.nio.file.Path testFile) {
 		super(testFile);
-		WhiteBoxCheck();
+	}	
+	
+	@Test
+	public void one() {
+		assertEquals("first white-box test", 0,0);
 	}
 
-	// TODO: add additional white box tests
-	private boolean WhiteBoxCheck() {
-		return true;
-	}
-	
 }
