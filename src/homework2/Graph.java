@@ -100,10 +100,10 @@ public class Graph<E> {
     
     /**
      * Add a node to the graph. If node already exists in the graph, do nothing. 
-     * @requires node != NULL && !nodes.containsKey(node)
+     * @requires node != NULL && node not in vertices TODO hide in all other methods also
      * @modifies
      * @effects if this graph doesn't contain the node it will be added as a vertex to the graph.
-     * @return true if the node was added to the graph and no error occured.
+     * @return true if the node was added to the graph and no error occurd.
      */
     public boolean addNode(E node) {
         

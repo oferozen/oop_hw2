@@ -11,8 +11,12 @@ public class GraphTests extends ScriptFileTests {
 	// black-box test are inherited from super
 	public GraphTests(java.nio.file.Path testFile) {
 		super(testFile);
+		WhiteBoxCheck();
 	}
 
 	// TODO: add additional white box tests
-
+	private boolean WhiteBoxCheck() {
+		return true;
+	}
+	
 }
