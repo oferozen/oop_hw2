@@ -8,15 +8,29 @@ import java.util.PriorityQueue;
 import java.util.Queue;
 import java.util.Set;
 
+/**
+ * Pathfinder is a class that receive a graph and then allows a user to check what is the weighted shorted
+ * path between two groups of nodes.
+ * 
+ * @param <E> The node type of the nodes in the graph.
+ * @param <P> The path type which must extend Path<E,P>
+ */
 public class PathFinder <E, P extends Path<E,P>>{
 
-	private final Graph<E> graph;
+	/**
+	 * This method receives 2 sets of nodes, one as a start group, and the second as and end group.
+	 * The input nodes are represented as a path with a single node. This is done because the Path 
+	 * interface doesn't provides us factory methods to generate paths, but it does allow us to 
+	 * represent a node using a path interface
+	 * 
+	 * @requires graph != null && starts != null && goals != null
+	 * @requires graph contains all nodes in starts && graphs contains all nodes in starts
+	 * @requires starts and goals nodes are mutually exclusive
+	 * @modifies
+	 * @return a path which starts in one of the "starts" nodes and ends in one of the "ends" node.
+	 */
 	
-	public PathFinder(Graph<E> graph) {
-		this.graph = graph;
-	}
-
-	P FindShortestPath (Set<P> starts, Set<P> goals) {
+	P FindShortestPath (Graph<E> graph, Set<P> starts, Set<P> goals) {
 		
  		Map<E, P> paths = new HashMap<>();		
 		for (var path : starts) {

@@ -1,0 +1,47 @@
+#syntax:
+# CreateNode n w
+# CreateGraph n
+# AddNode g n
+# AddEdge A n3 n1 
+# FindPath g n1 n2 -> n3 n4
+
+CreateGraph g
+CreateNode n1 30
+CreateNode n2 10
+CreateNode n3 10
+CreateNode n4 1
+CreateNode n5 1
+CreateNode n6 20
+
+AddNode g n1
+AddNode g n2
+AddNode g n3
+AddNode g n4
+AddNode g n5
+AddNode g n6
+
+# 2 paths:
+# (1) n4 -> n2 -> n1 -> n5
+# (2) n4 -> n3 -> n6 -> n5
+
+# path (1)
+AddEdge g n4 n2
+AddEdge g n2 n1
+AddEdge g n1 n5
+
+# path (2)
+AddEdge g n4 n3
+AddEdge g n3 n6
+AddEdge g n6 n5
+
+# shortest path should be (2)
+
+FindPath g n4 -> n5
+FindPath g n5 -> n4
+
+# Adding path (3) n4 -> n7 -> n5
+CreateNode n7 25
+AddNode g n7
+AddEdge g n4 n7
+AddEdge g n7 n5
+FindPath g n4 -> n5

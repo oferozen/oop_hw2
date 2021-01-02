@@ -1,0 +1,66 @@
+#syntax:
+# CreateNode n w
+# CreateGraph n
+# AddNode g n
+# AddEdge A n3 n1 
+# FindPath g n1 n2 -> n3 n4
+
+created graph g
+created node n1 with cost 10
+created node n2 with cost 10
+created node n3 with cost 10
+created node n4 with cost 10
+created node n5 with cost 10
+created node n6 with cost 10
+created node n7 with cost 10
+created node n8 with cost 10
+created node n9 with cost 10
+created node n10 with cost 10
+
+added node n10 to g
+added node n9 to g
+added node n8 to g
+added node n7 to g
+added node n6 to g
+added node n5 to g
+added node n4 to g
+added node n3 to g
+added node n2 to g
+added node n1 to g
+
+added edge from n2 to n1 in g
+added edge from n3 to n1 in g
+
+added edge from n1 to n2 in g
+added edge from n5 to n2 in g
+
+added edge from n4 to n3 in g
+added edge from n6 to n3 in g
+
+added edge from n5 to n4 in g
+added edge from n10 to n4 in g
+
+added edge from n2 to n5 in g
+added edge from n4 to n5 in g
+added edge from n10 to n5 in g
+
+added edge from n3 to n6 in g
+
+added edge from n6 to n7 in g
+added edge from n1 to n7 in g
+
+added edge from n7 to n8 in g
+
+added edge from n7 to n9 in g
+added edge from n10 to n9 in g
+
+# no valid path
+shortest path in g:
+
+# create a valid path
+added edge from n9 to n10 in g
+shortest path in g: n9 n10 n4 n3 n1
+
+# create a faster valid path from a different node
+added edge from n8 to n6 in g
+shortest path in g: n8 n6 n3 n1

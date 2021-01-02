@@ -21,7 +21,6 @@ public class TestDriver {
 	private final BufferedReader input;
   	private final PrintWriter output;
 
-
   	/**
   	 * Creates a new TestDriver.
      * @requires r != null && w != null
@@ -341,14 +340,7 @@ public class TestDriver {
 
   	private void findPath(String graphName, List<String> sourceArgs,
   						  List<String> destArgs) {
-  		
-  		// TODO: Insert your code here.
-  		   
-  		// ___ = graphs.get(graphName);
-  		// ___ = nodes.get(sourceArgs.get(i));
-  		// ___ = nodes.get(destArgs.get(i));
-  		// output.println(...);
-  		
+
   		Graph<WeightedNode> graph = graphs.get(graphName);
   		if(graph == null) {
   			output.println("unidentified graph: " + graphName);
@@ -401,14 +393,19 @@ public class TestDriver {
   		
   		String message = String.format("shortest path in %s:", graphName);
   		
-  		var pathFinder = new PathFinder<WeightedNode, WeightedNodePath>(graph);
-  		Iterator<WeightedNode> it = pathFinder.FindShortestPath(sources, destinations).iterator();
-
-  		if (it != null) {
-	  		while (it.hasNext()) {
-	  			message += " " + it.next().getName();
-	  		}
+  		var pathFinder = new PathFinder<WeightedNode, WeightedNodePath>();
+  		WeightedNodePath path = pathFinder.FindShortestPath(graph, sources, destinations);
+  		if (path != null) {
+  			Iterator<WeightedNode> it = path.iterator();
+  			
+  			if (it != null) {
+  				while (it.hasNext()) {
+  					message += " " + it.next().getName();
+  				}
+  			}
+			
   		}
+  		
 	  		
   		output.println(message);
   	}

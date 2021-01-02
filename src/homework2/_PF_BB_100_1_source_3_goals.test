@@ -1,0 +1,65 @@
+#syntax:
+# CreateNode n w
+# CreateGraph n
+# AddNode g n
+# AddEdge A n3 n1 
+# FindPath g n1 n2 -> n3 n4
+
+CreateGraph g
+CreateNode n1 10
+CreateNode n2 10
+CreateNode n3 10
+CreateNode n4 10
+CreateNode n5 10
+CreateNode n6 10
+CreateNode n7 10
+CreateNode n8 10
+CreateNode n9 10
+CreateNode n10 10
+
+AddNode g n10
+AddNode g n9
+AddNode g n8
+AddNode g n7
+AddNode g n6
+AddNode g n5
+AddNode g n4
+AddNode g n3
+AddNode g n2
+AddNode g n1
+
+AddEdge g n1 n2
+AddEdge g n1 n3
+
+AddEdge g n2 n1
+AddEdge g n2 n5
+
+AddEdge g n3 n4
+AddEdge g n3 n6
+
+AddEdge g n4 n5
+AddEdge g n4 n10
+
+AddEdge g n5 n2
+AddEdge g n5 n4
+AddEdge g n5 n10
+
+AddEdge g n6 n3
+
+AddEdge g n7 n6
+AddEdge g n7 n1
+
+AddEdge g n8 n7
+
+AddEdge g n9 n7
+AddEdge g n9 n10
+
+FindPath g n1 -> n7 n8 n9
+
+# create a valid path
+AddEdge g n10 n9
+FindPath g n1 -> n7 n8 n9
+
+# create a faster valid path to a different node
+AddEdge g n6 n8
+FindPath g n1 -> n7 n8 n9

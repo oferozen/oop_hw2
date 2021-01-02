@@ -1,0 +1,38 @@
+#syntax:
+# CreateNode n w
+# CreateGraph n
+# AddNode g n
+# AddEdge A n3 n1 
+# FindPath g n1 n2 -> n3 n4
+
+CreateGraph g
+CreateNode n1 1
+CreateNode n2 2
+CreateNode n3 1
+CreateNode n4 1
+AddNode g n1
+AddNode g n2
+AddNode g n3
+AddNode g n4
+
+# n4 is the source and n1 is the goald.
+
+AddEdge g n4 n3
+AddEdge g n4 n2
+AddEdge g n3 n1
+AddEdge g n2 n1
+
+FindPath g n4 -> n1
+FindPath g n1 -> n4
+FindPath g n3 -> n1
+FindPath g n2 -> n1
+
+# Add a path with weight 3
+CreateNode n5 2
+CreateNode n6 0
+AddNode g n5
+AddNode g n6
+AddEdge g n4 n5
+AddEdge g n5 n6
+AddEdge g n6 n1
+FindPath g n4 -> n1
