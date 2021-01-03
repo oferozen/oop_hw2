@@ -57,11 +57,12 @@ public class Graph<E> {
      * @return nodes.containsKey(node) == expectExists
      */
     private boolean validateNodeExists(E node, boolean expectExists, String function, String variable) {
+        if(node == null) return false;
         
         boolean valid = nodes.containsKey(node) == expectExists;
         if (!valid) {
-            System.out.println(String.format("ERROR: Graph: Node %s exist : %s: %s", 
-                                             expectExists ? "" : "doesn't",      
+            System.out.println(String.format("ERROR: Graph: Node%s exist : %s: %s", 
+                                             expectExists ? " doesn't" : "",      
                                              function, 
                                              variable));
         }
@@ -139,14 +140,14 @@ public class Graph<E> {
         
         boolean valid = true;
         
-        if (!validateNodeNullity(source, "addEdge", "source")) valid = false;      
-        if (!validateNodeNullity(dest, "addEdge", "dest")) valid = false;        
-        if (!validateNodeExists(source, true, "addEdge", "source")) valid = false;
-        if (!validateNodeExists(dest, true, "addEdge", "dest")) valid = false;
+        if (!validateNodeNullity(source, "addEdge", "source")) return false; //if source is null return false
+        if (!validateNodeNullity(dest, "addEdge", "dest"))  return false;  //if destination is null return false     
+        if (!validateNodeExists(source, true, "addEdge", "source")) return false; // source doesn't exist
+        if (!validateNodeExists(dest, true, "addEdge", "dest")) return false; // destination does't exist
+        
         
         if (nodes.get(source).contains(dest)) {
-        	valid = false;
-        //	System.out.println("ERROR: Graph: addEdge: edge already exists"); NO NEED FOR MESSAGE HERE ?! 	
+        	valid = false;	
         }
         
         if (valid) {
