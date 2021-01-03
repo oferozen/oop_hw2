@@ -7,6 +7,7 @@ import java.util.Map;
 import java.util.PriorityQueue;
 import java.util.Queue;
 import java.util.Set;
+import java.util.SortedSet;
 
 /**
  * Pathfinder is a class that receive a graph and then allows a user to check what is the weighted shorted
@@ -24,13 +25,58 @@ public class PathFinder <E, P extends Path<E,P>>{
 	 * represent a node using a path interface
 	 * 
 	 * @requires graph != null && starts != null && goals != null
+	 * @requires starts.size() != null && goals.size() != null
 	 * @requires graph contains all nodes in starts && graphs contains all nodes in starts
 	 * @requires starts and goals nodes are mutually exclusive
+	 * @requires all nodes != null
 	 * @modifies
 	 * @return a path which starts in one of the "starts" nodes and ends in one of the "ends" node.
 	 */
 	
 	P FindShortestPath (Graph<E> graph, Set<P> starts, Set<P> goals) {
+		
+		if (graph == null || starts == null || goals == null) {
+			System.out.println("Error: FindShortestPath null arguments");
+			return null;
+		}
+		
+		if (starts.size() == 0) {
+			System.out.println("Error: FindShortestPath: starts size is 0");
+			return null;
+		}
+		
+		if (goals.size() == 0) {
+			System.out.println("Error: FindShortestPath: goals size is 0");
+			return null;
+		}
+		
+		for(P node : starts) {
+			
+			if (node == null) {
+				System.out.println("Error: FindShortestPath: null in starts");
+				return null;
+			}
+			
+			if (!graph.contains(node.getEnd())) {
+				System.out.println(String.format("Error: FindShortestPath: node %s not in graph",
+												 node.getEnd().toString()));
+				return null;
+			}
+		}
+		
+		for(P node : goals) {
+			
+			if (node == null) {
+				System.out.println("Error: FindShortestPath: null in goals");
+				return null;
+			}
+			
+			if (!graph.contains(node.getEnd())) {
+				System.out.println(String.format("Error: FindShortestPath: node %s not in graph",
+												 node.getEnd().toString()));
+				return null;
+			}
+		}
 		
  		Map<E, P> paths = new HashMap<>();		
 		for (var path : starts) {
